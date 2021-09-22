@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+
+  "name": "Sheets News",
+  "version": "0.1.0",
+  "description": "extension to make hackernews look like a spreadsheet",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "permissions": ["management", "tabs"],
+  "commands": {
+    "Ctrl+Q": {
+      "suggested_key": {
+        "default": "Ctrl+Q",
+        "mac": "Command+Q"
+      },
+      "description": "Ctrl+Q"
+    }
+  },
+
+  "content_scripts": [
+    {
+      "css": ["styles.css"],
+      "js": ["script.js"],
+      "matches": ["https://news.ycombinator.com/*"]
+    }
+  ]
+}
