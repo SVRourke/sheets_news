@@ -85,7 +85,6 @@ const parsePosts = () => {
   const halfParsed = chunkRows(rows);
   const newRows = [];
   halfParsed.forEach((e) => {
-    console.log(e);
     newRows.push(parseRow(e));
   });
 };
@@ -96,6 +95,7 @@ const table = document.querySelector("table#hnmain");
 
 const rows = nodelistToArray(rowsSlector());
 const chunked = chunkRows(rows);
+const posts = parsePosts();
+// parse footer nav
+// parse search form
 debugger;
-
-parsePosts();
