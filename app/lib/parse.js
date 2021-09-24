@@ -1,5 +1,4 @@
-// BROAD UTILITIES
-const nodelistToArray = (nodes) => {
+const nlToArr = (nodes) => {
   const output = [];
 
   for (const node of nodes) output.push(node);
@@ -17,11 +16,18 @@ const navLinksSelector = () => {
 
 const getNavLinks = () => {
   const rawElements = navLinksSelector();
-  return nodelistToArray(rawElements).slice(1);
+  return nlToArr(rawElements)
+    .slice(1)
+    .map((e) => {
+      return {
+        text: e.textContent,
+        link: e.href,
+      };
+    });
 };
 
 // POSTLINK UTILITIES
-const rowsSlector = () => {
+const rowsSelector = () => {
   return document.querySelectorAll(
     "#hnmain > tbody > tr:nth-child(3) > td > table > tbody > tr"
   );
@@ -34,7 +40,8 @@ const rowsSlector = () => {
 // The second contains: upvote count, user profile link (user name inside),
 // hide link, comment count
 
-const chunkRows = (rows) => {
+const chunkRows = () => {
+  const rows = nlToArr(rowsSelector());
   const newRows = [];
   let tempStorage = [];
 
@@ -81,21 +88,32 @@ const parseRow = (row) => {
 };
 
 const parsePosts = () => {
-  const rows = nodelistToArray(rowsSlector());
+  const rows = nlToArr(rowsSelector());
   const halfParsed = chunkRows(rows);
   const newRows = [];
   halfParsed.forEach((e) => {
     newRows.push(parseRow(e));
   });
+  return newRows;
 };
 
-// PAGINATION UTILITIES
-const navLinks = getNavLinks();
-const table = document.querySelector("table#hnmain");
+const getFooterLinks = () => {
+  const links = nlToArr(document.querySelectorAll(".yclinks > a"));
 
-const rows = nodelistToArray(rowsSlector());
-const chunked = chunkRows(rows);
-const posts = parsePosts();
-// parse footer nav
-// parse search form
-debugger;
+  return links.map((e) => {
+    return { text: e.textContent, link: e.href };
+  });
+};
+
+const getSearchForm = () => {
+  return document.querySelector("form");
+};
+
+module.exports.parsePage = () => {
+  return {
+    navigation: getNavLinks(),
+    footer_navigation: getFooterLinks(),
+    posts: parsePosts(),
+    search: getSearchForm(),
+  };
+};

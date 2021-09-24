@@ -1,0 +1,59 @@
+* {
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th {
+  border-right: solid #d5d5d6 2px;
+  padding: 0.5rem 0.3rem 0.5rem 0.2rem;
+}
+td {
+  border-right: solid #e7e8e9 2px;
+  padding-left: 0.2rem;
+  padding: 0.5rem 0.3rem 0.5rem 0.2rem;
+}
+
+tr {
+  border-bottom: solid #e7e8e9 2px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.number_col {
+}
+
+/* td */
+.story {
+}
+
+.votes {
+}
+
+.comments {
+}
+
+.hide {
+}
+
+.author {
+}
+
+.source {
+}
+
+.number {
+  text-align: center;
+  background-color: #f8f9fa;
+  width: 3rem;
+}
+
+.age {
+}
