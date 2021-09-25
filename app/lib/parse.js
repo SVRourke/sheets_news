@@ -79,7 +79,7 @@ const parseRow = (row) => {
     sourceName: applySelector(row[0], "span.sitebit > a"),
     upvoteCount: applySelector(row[1], ".subtext > span.score"),
     posterLink: applySelector(row[1], ".subtext > .hnuser", true),
-    pasterName: applySelector(row[1], ".subtext > .hnuser"),
+    posterName: applySelector(row[1], ".subtext > .hnuser"),
     postAge: applySelector(row[1], ".subtext > .age"),
     hideUrl: applySelector(row[1], ".subtext > a:nth-child(5)", true),
     commentCount: applySelector(row[1], ".subtext > a:nth-child(6)"),
@@ -109,11 +109,22 @@ const getSearchForm = () => {
   return document.querySelector("form");
 };
 
+const getNextLink = () => {
+  const link = document.querySelector(
+    "#hnmain > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(92) > td.title > a"
+  );
+  return {
+    text: link.textContent,
+    link: link.href,
+  };
+};
+
 module.exports.parsePage = () => {
   return {
     navigation: getNavLinks(),
     footer_navigation: getFooterLinks(),
     posts: parsePosts(),
     search: getSearchForm(),
+    next_page: getNextLink(),
   };
 };
