@@ -4,16 +4,14 @@ module.exports.clearPage = () => {
 
 const tableHeadings = [
   "number",
-  "story", // LINK title storyUrl
+  "story",
   "age",
-  "votes", // LINK upvoteCount upvoteUrl
-  "comments", // LINK commentCount commentsUrl
-  "hide", // LINK hideUrl
-  "author", // LINK posterName posterLink
-  "source", // LINK sourceName sourceSite
+  "votes",
+  "comments",
+  "hide",
+  "author",
+  "source",
 ];
-
-// create table heading
 
 module.exports.buildHeading = (rows) => {
   const heading = document.createElement("tr");
@@ -22,6 +20,11 @@ module.exports.buildHeading = (rows) => {
     if (h !== "number") item.textContent = h;
     heading.appendChild(item);
   });
+  for (let i = 0; i < 4; i++) {
+    const pad = document.createElement("td");
+    pad.classList.add("padding");
+    heading.appendChild(pad);
+  }
   return heading;
 };
 
@@ -37,11 +40,6 @@ const newLink = (text, href) => {
   link.href = href;
   return link;
 };
-
-// create table
-// create table body
-// add footer to body
-//add table to doc
 
 const createTds = {
   story: (post) => {
@@ -108,6 +106,17 @@ module.exports.buildRows = (table, posts) => {
     console.log("HELLO");
     table.appendChild(buildRow(post));
   });
+};
+
+module.exports.nextLink = (table, navlinkInfo) => {
+  const { text, link } = navlinkInfo;
+  const row = newEl("tr");
+  const td = newEl("td");
+  const a = newLink(text, link);
+  console.log(text, link, a);
+  td.appendChild(a);
+  row.appendChild(td);
+  table.appendChild(row);
 };
 
 // navigation = [
