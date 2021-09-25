@@ -7,7 +7,6 @@
 
 table {
   border-collapse: collapse;
-  width: 100%;
 }
 th {
   border-right: solid #d5d5d6 2px;
@@ -32,9 +31,11 @@ a {
 
 /* td */
 .story {
+  width: 35rem;
 }
 
 .votes {
+  width: 10rem;
 }
 
 .comments {
@@ -56,4 +57,9 @@ a {
 }
 
 .age {
+  width: 10rem;
+}
+
+.padding {
+  width: 10rem;
 }
