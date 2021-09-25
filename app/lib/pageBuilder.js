@@ -109,3 +109,24 @@ module.exports.buildRows = (table, posts) => {
     table.appendChild(buildRow(post));
   });
 };
+
+// navigation = [
+//   {text, link}
+// ] 9
+
+// footer_navigation = [
+//   {text, link}
+// ] 8
+
+module.exports.footerNav = (table, footerNavItems) => {
+  const row = newEl("tr");
+  footerNavItems.forEach((e) => {
+    const td = newEl("td");
+    const link = newEl("a");
+    link.textContent = e.text;
+    link.href = e.href;
+    td.appendChild(link);
+    row.appendChild(td);
+  });
+  table.appendChild(row);
+};
