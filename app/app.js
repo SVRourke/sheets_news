@@ -5,7 +5,9 @@ import {
   buildHeading,
   buildRows,
   footerNav,
+  nextLink,
 } from "./lib/pageBuilder";
+document.querySelector("link[type='text/css']").remove();
 
 if (window.location.href.match(/item\?/)) {
   // Item parsing
@@ -31,8 +33,8 @@ if (window.location.href.match(/item\?/)) {
   newTable.appendChild(heading);
   // newTable.appendChild(heading);
   buildRows(newTable, pageData.posts);
+  nextLink(newTable, pageData.next_page);
   footerNav(newTable, pageData.footer_navigation);
   // Clear STYLES
-  document.querySelector("link[type='text/css']").remove();
   console.log(window.location.href);
 }
