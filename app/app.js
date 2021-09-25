@@ -1,6 +1,11 @@
 // import { parsePage, parsePosts } from "./lib/parse";
 import { parsePage } from "./lib/parse";
-import { clearPage, buildHeading, buildRows } from "./lib/pageBuilder";
+import {
+  clearPage,
+  buildHeading,
+  buildRows,
+  footerNav,
+} from "./lib/pageBuilder";
 
 if (window.location.href.match(/item\?/)) {
   // Item parsing
@@ -14,6 +19,7 @@ if (window.location.href.match(/item\?/)) {
   const pageData = parsePage();
   //removing the defualt page
   clearPage();
+  console.log(pageData);
 
   // parse footer nav
   // parse search form
@@ -25,6 +31,7 @@ if (window.location.href.match(/item\?/)) {
   newTable.appendChild(heading);
   // newTable.appendChild(heading);
   buildRows(newTable, pageData.posts);
+  footerNav(newTable, pageData.footer_navigation);
   // Clear STYLES
   document.querySelector("link[type='text/css']").remove();
   console.log(window.location.href);
